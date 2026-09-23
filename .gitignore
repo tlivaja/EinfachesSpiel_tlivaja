@@ -1,0 +1,12 @@
+# Ausgabeordner
+out/
+target/
+build/
+
+# IntelliJ-Dateien
+*.iml
+.idea/
+
+# OS-Dateien
+.DS_Store
+Thumbs.db
