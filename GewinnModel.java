@@ -11,6 +11,9 @@ public class GewinnModel {
     private int computerZahl;
     private int rundenErgebnis;
 
+    /**
+     * Initialisiert das Modell mit 30 Startpunkten.
+     */
     public GewinnModel() {
         this.gesamtPunkte = 30;
     }
@@ -58,5 +61,35 @@ public class GewinnModel {
      */
     public boolean hatVerloren() {
         return this.gesamtPunkte <= 0;
+    }
+
+    /**
+     * Hier wird eine Zufallszahl zwischen 1 und 9 Generiert diese wird dann in ein Attribut gespeichert
+     */
+    public void berechneComputerZahl() {
+        Random random;
+        random = new Random();
+        this.computerZahl = random.nextInt(9) + 1; // Zahl von 1 bis 9
+    }
+
+    /**
+     * Berechnet das Ergebnis der aktuellen Spielrunde basierend auf dem Tipp des Spielers
+     * und vergleicht ihn mit der Computerzahl.
+     *
+     * @param spielerZahl Die vom Spieler gewählte Zahl zwischen 1 und 9
+     */
+    public void berechneRunde(int spielerZahl) {
+        this.spielerZahl = spielerZahl;
+        berechneComputerZahl();
+
+        if (this.spielerZahl == this.computerZahl) {
+            this.rundenErgebnis = 20;
+        } else if (Math.abs(this.spielerZahl - this.computerZahl) == 1) {
+            this.rundenErgebnis = 5;
+        } else {
+            this.rundenErgebnis = -10;
+        }
+
+        this.gesamtPunkte += this.rundenErgebnis;
     }
 }
